@@ -1,0 +1,369 @@
+{% load static %}
+{% include 'responsive_footer.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Selector</title>
+    {% include 'header.html' %}
+</head>
+<body>
+    {% include 'chatbot.html' %}
+
+    <div class="filter-container">
+        <form method="POST" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <div id="error-message" class="error-message"></div>
+
+            <!-- Face Color Section -->
+            <div class="filter-section">
+                <label>Face Color:</label>
+                <div class="image-selector" data-category="face_color">
+                    <div class="image-item" onclick="selectOption('face_color', 'fair', this)">
+                        <img src="{% static 'img/fairskin color.jpg' %}" alt="Fair">
+                    </div>
+                    <div class="image-item" onclick="selectOption('face_color', 'medium', this)">
+                        <img src="{% static 'img/mediumskin color.webp' %}" alt="Medium">
+                    </div>
+                    <div class="image-item" onclick="selectOption('face_color', 'dark', this)">
+                        <img src="{% static 'img/darkskin color.webp' %}" alt="Dark">
+                    </div>
+                </div>
+                <input type="hidden" name="face_color" id="face_color">
+            </div>
+
+            <!-- Hair Color Section -->
+            <div class="filter-section">
+                <label>Hair Color:</label>
+                <div class="image-selector" data-category="hair_color">
+                    <div class="image-item" onclick="selectOption('hair_color', 'black', this)">
+                        <img src="{% static 'img/black hair women.webp' %}" alt="Black">
+                    </div>
+                    <div class="image-item" onclick="selectOption('hair_color', 'brown', this)">
+                        <img src="{% static 'img/brownhair color.jpg' %}" alt="Brown">
+                    </div>
+                    <div class="image-item" onclick="selectOption('hair_color', 'red', this)">
+                        <img src="{% static 'img/red hair color.jpg' %}" alt="Red">
+                    </div>
+                </div>
+                <input type="hidden" name="hair_color" id="hair_color">
+            </div>
+
+            <!-- Skin Type Section -->
+            <div class="filter-section">
+                <label>Skin Type:</label>
+                <div class="image-selector" data-category="skin_type">
+                    <div class="image-item" onclick="selectOption('skin_type', 'oily', this)">
+                        <img src="{% static 'img/oilyskin women.jpg' %}" alt="Oily">
+                    </div>
+                    <div class="image-item" onclick="selectOption('skin_type', 'dry', this)">
+                        <img src="{% static 'img/dryskin women.jpg' %}" alt="Dry">
+                    </div>
+                    <div class="image-item" onclick="selectOption('skin_type', 'combination', this)">
+                        <img src="{% static 'img/fairskin color.jpg' %}" alt="Combination">
+                    </div>
+                </div>
+                <input type="hidden" name="skin_type" id="skin_type">
+            </div>
+
+            <!-- Dress Type Section -->
+            <div class="filter-section">
+                <label>Dress Type:</label>
+                <div class="image-selector" data-category="dress_type">
+                    <div class="image-item" onclick="selectOption('dress_type', 'party', this)">
+                        <img src="{% static 'img/partywearwomen.jpg' %}" alt="Party">
+                    </div>
+                    <div class="image-item" onclick="selectOption('dress_type', 'casual', this)">
+                        <img src="{% static 'img/casualwearwomen.jpg' %}" alt="Casual">
+                    </div>
+                    <div class="image-item" onclick="selectOption('dress_type', 'formal', this)">
+                        <img src="{% static 'img/formalwearwomen.jpg' %}" alt="Formal">
+                    </div>
+                    <div class="image-item" onclick="selectOption('dress_type', 'seasonal', this)">
+                        <img src="{% static 'img/seasonalwearwomen.jpg' %}" alt="Seasonal">
+                    </div>
+                </div>
+                <input type="hidden" name="dress_type" id="dress_type">
+            </div>
+
+            <button type="submit">Filter Dresses</button>
+        </form>
+    </div>
+
+    
+    <!-- Instagram Section Begin -->
+    <div class="instagram-photo">
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-1.jpg'%}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-2.jpg'%}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-3.jpg'%}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-4.jpg'%}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-5.jpg'%}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="{% static 'img/insta-6.jpg'%}">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram Section End -->
+
+    
+    <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-1.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-2.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-3.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-4.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-5.png'%}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <!-- <a href="#"><img src="{% static 'img/footer-logo.png'%}" alt=""></a> -->
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello.colorlib@gmail.com</li>
+                        </ul>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Serivius</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>My Account</h5>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Shopping Cart</a></li>
+                            <li><a href="#">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Join Our Newsletter Now</h5>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+                                          <p class="text-center text-md-end text-xl-start"> 
+                All Rights Reserved
+              </p>
+                        </div>
+                        <div class="payment-pic">
+                            <img src="{% static 'img/payment-method.png'%}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    
+
+    <style>
+        .filter-container {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 0.5rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .image-item {
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+        }
+
+        .image-item.selected {
+            border: 3px solid #e7ab3c;
+            transform: scale(1.02);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .category-error {
+            border: 2px solid #e74c3c !important;
+            border-radius: 8px;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            max-width: 280px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #e7ab3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        function selectOption(inputId, value, element) {
+            const categorySelector = element.closest('.image-selector');
+            const currentSelection = categorySelector.querySelector('.selected');
+            
+            if (currentSelection === element) {
+                element.classList.remove('selected');
+                document.getElementById(inputId).value = '';
+            } else {
+                if (currentSelection) currentSelection.classList.remove('selected');
+                element.classList.add('selected');
+                document.getElementById(inputId).value = value;
+            }
+        }
+
+        function validateForm() {
+            const categories = ['face_color', 'hair_color', 'skin_type', 'dress_type'];
+            let isValid = true;
+            const errorMessage = document.getElementById('error-message');
+            
+            errorMessage.textContent = '';
+            document.querySelectorAll('.image-selector').forEach(selector => {
+                selector.classList.remove('category-error');
+            });
+
+            categories.forEach(categoryId => {
+                const input = document.getElementById(categoryId);
+                if (!input.value) {
+                    isValid = false;
+                    const selector = document.querySelector(`[data-category="${categoryId}"]`);
+                    selector.classList.add('category-error');
+                }
+            });
+
+            if (!isValid) {
+                errorMessage.textContent = 'Please select one option from each category before submitting.';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/jquery-ui.min.js'%}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js'%}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js'%}"></script>
+    <script src="{% static 'js/jquery.zoom.min.js'%}"></script>
+    <script src="{% static 'js/jquery.dd.min.js'%}"></script>
+    <script src="{% static 'js/jquery.slicknav.js'%}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+
+</body>
+</html>

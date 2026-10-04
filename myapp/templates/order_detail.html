@@ -1,0 +1,19 @@
+<section class="order-details spad">
+    <div class="container">
+        <h2>Order Details</h2>
+        <p>Order ID: {{ order.order_id }}</p>
+        <p>Subtotal: ${{ order.subtotal }}</p>
+        <p>Total: ${{ order.total }}</p>
+        <p>Products:</p>
+        <ul>
+            {% for key, item in order.products.items %}
+            <li>{{ item.name }} - Quantity: {{ item.quantity }} - Price: ${{ item.price }}</li>
+            {% endfor %}
+        </ul>
+        {% if now|date:"Y-m-d H:i:s" < order.can_be_deleted_until|date:"Y-m-d H:i:s" %}
+        <a href="{% url 'delete_order' order.order_id %}" class="btn btn-danger">Cancel Order</a>
+        {% else %}
+        <p>The cancellation window has expired.</p>
+        {% endif %}
+    </div>
+</section>

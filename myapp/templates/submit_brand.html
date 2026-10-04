@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Partnership Application</title>
+    <style>
+        :root {
+            --primary: #e7ab3c;
+            --primary-hover: #e7ab3c;
+            --background: #f8fafc;
+            --text: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: #e7ab3c;
+        }
+
+        button {
+            background-color: #e7ab3c;
+            color: white;
+            font-weight: 600;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .helptext {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .errorlist {
+            color: #dc2626;
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .terms-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .terms-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .terms-list {
+            padding-left: 1.5rem;
+        }
+
+        .terms-list li {
+            margin-bottom: 0.75rem;
+            color: #475569;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>Brand Partnership Application</h1>
+            <p>Complete the form to join our partner network</p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="errorlist">
+                    Please correct the errors below
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                {{ form.first_name }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                {{ form.last_name }}
+            </div>
+
+            {% for field in form %}
+                {% if field.name not in 'first_name last_name agree_terms' %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <span class="helptext">{{ field.help_text }}</span>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="errorlist">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="terms-container">
+                <h3 class="terms-title">Partnership Terms & Conditions</h3>
+                <ul class="terms-list">
+                    <li>All products must be delivered to our warehouse at least 24 hours prior to website listing</li>
+                    <li>Partner brands are responsible for product quality control and packaging</li>
+                    <li>Payments will be processed after customer payments are confirmed in our account</li>
+                    <li>Commission structure: {{ deal_percentage }}% per sale (paid weekly)</li>
+                    <li>Returns and exchanges must be handled within 48 hours of notification</li>
+                    <li>Monthly sales reports will be provided by the 5th of each month</li>
+                    <li>Minimum 30-day notice required for partnership termination</li>
+                </ul>
+                <p>By checking this box, you agree to all terms and conditions outlined above.</p>
+            </div>
+
+            <div class="checkbox-group">
+                {{ form.agree_terms }}
+                <label for="{{ form.agree_terms.id_for_label }}">I agree to the terms and conditions</label>
+            </div>
+
+            {% if form.agree_terms.errors %}
+                <div class="errorlist">{{ form.agree_terms.errors }}</div>
+            {% endif %}
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>

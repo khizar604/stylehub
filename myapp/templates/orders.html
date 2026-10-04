@@ -1,0 +1,14 @@
+<!-- orders.html -->
+<h1>Your Orders</h1>
+<ul>
+    {% for order in orders %}
+    <li>
+        Order ID: {{ order.id }} | Total: ${{ order.total_price }}
+        {% if not order.is_cancelled %}
+        <a href="{% url 'cancel_order' order.id %}" class="btn btn-danger">Cancel</a>
+        {% else %}
+        <span class="text-muted">Cancelled</span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

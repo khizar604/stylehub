@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Partner Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --existing-color: #e7ab3c;
+            --new-color: #417690;
+        }
+
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', system-ui;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .gateway-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .gateway-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--existing-color);
+        }
+
+        .new-partner .card-icon {
+            color: var(--new-color);
+        }
+
+        .btn-existing {
+            background: var(--existing-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem auto;
+        }
+
+        .btn-existing:hover {
+            background: #d19b34;
+            transform: scale(1.05);
+        }
+
+        .btn-new {
+            background: var(--new-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem auto;
+        }
+
+        .btn-new:hover {
+            background: #3a6a7f;
+            transform: scale(1.05);
+        }
+
+        .process-steps {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .process-steps li {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #444;
+        }
+
+        .process-steps li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--new-color);
+            font-weight: bold;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .gateway-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .btn-existing, .btn-new {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+        .btn-existing, .btn-new {
+            display: inline-block;
+            text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Existing Partner Card -->
+            <div class="col-md-6 mb-4">
+                <div class="gateway-card">
+                    <i class="fas fa-user-lock card-icon"></i>
+                    <h2>Existing Brand Partners</h2>
+                    <p class="text-muted">Already have partner credentials?</p>
+                    <a href="{% url 'admin:index' %}" class="btn-existing">
+                        <i class="fas fa-sign-in-alt"></i> Access Partner Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- New Partner Card -->
+            <div class="col-md-6">
+                <div class="gateway-card new-partner">
+                    <i class="fas fa-handshake card-icon"></i>
+                    <h2>Become a Partner</h2>
+                    <p class="text-muted">Quick application process with 24-hour response</p>
+                    
+                    <ul class="process-steps">
+                        <li>Submit partnership request</li>
+                        <li>Admin approval via WhatsApp/Email</li>
+                        <li>Get dashboard access credentials</li>
+                    </ul>
+
+                    <a href="{% url 'submit_brand' %}" class="btn-new">
+                        <i class="fas fa-file-alt"></i> Apply for Partnership
+                    </a>
+
+                    <div class="contact-info">
+                        <i class="fas fa-info-circle"></i>
+                        Approved partners receive:<br>
+                        <i class="fab fa-whatsapp"></i> WhatsApp support & 
+                        <i class="fas fa-envelope"></i> Email credentials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

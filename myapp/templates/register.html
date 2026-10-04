@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zxx">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StyleHub</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
+</head>
+
+<body>
+
+
+<!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Register</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Form Section Begin -->
+
+    <!-- Register Section Begin -->
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="register-form">
+                        <h2>Register</h2>
+                        {% include 'messages.html' %}
+                        <form method="POST" onsubmit="return validateForm()">
+                            {% csrf_token %}
+                            <div class="group-input">
+                                <label for="first-name">First name *</label>
+                                <input type="text" id="first-name" name="fname" required pattern="[A-Za-z ]+">
+                            </div>
+                            <div class="group-input">
+                                <label for="last-name">Last name *</label>
+                                <input type="text" id="last-name" name="lname" required pattern="[A-Za-z ]+">
+                            </div>
+                            <div class="group-input">
+                                <label for="username">Username *</label>
+                                <input type="text" id="username" name="username" required minlength="4">
+                            </div>
+                            <div class="group-input">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="group-input">
+                                <label for="pass">Password *</label>
+                                <input type="password" id="pass" name="password" required minlength="8">
+                                <div id="password-strength" class="mt-2"></div>
+                            </div>
+                            <div class="group-input">
+                                <label for="con-pass">Confirm Password *</label>
+                                <input type="password" id="con-pass" name="confirm_password" required minlength="8">
+                                <div id="password-match" class="mt-2"></div>
+                            </div>
+                            <button type="submit" class="site-btn register-btn">REGISTER</button>
+                        </form>
+                        <div class="switch-login">
+                            <a href="{% url 'user_login' %}" class="or-login">Existing User? Login</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                function validateForm() {
+                    const password = document.getElementById('pass').value;
+                    const confirm = document.getElementById('con-pass').value;
+                    
+                    if (password !== confirm) {
+                        alert('Passwords do not match!');
+                        return false;
+                    }
+                    return true;
+                }
+                
+                // Real-time password strength check
+                document.getElementById('pass').addEventListener('input', function(e) {
+                    const strength = {
+                        0: "Worst",
+                        1: "Bad",
+                        2: "Weak",
+                        3: "Good",
+                        4: "Strong"
+                    };
+                    const value = e.target.value;
+                    const result = zxcvbn(value);
+                    document.getElementById('password-strength').innerHTML = 
+                        `Password strength: ${strength[result.score]} (${result.feedback.suggestions.join(' ')})`;
+                });
+                
+                // Real-time password match check
+                document.getElementById('con-pass').addEventListener('input', function(e) {
+                    const match = document.getElementById('pass').value === e.target.value;
+                    document.getElementById('password-match').innerHTML = match ? 
+                        '✓ Passwords match' : '✗ Passwords do not match';
+                    document.getElementById('password-match').style.color = match ? 'green' : 'red';
+                });
+                </script>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Register Form Section End -->
+
+    <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-1.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-2.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-3.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-4.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="{% static 'img/logo-carousel/logo-5.png'%}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
+    
+   
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/jquery-ui.min.js'%}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js'%}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js'%}"></script>
+    <script src="{% static 'js/jquery.zoom.min.js'%}"></script>
+    <script src="{% static 'js/jquery.dd.min.js'%}"></script>
+    <script src="{% static 'js/jquery.slicknav.js'%}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+</body>
+
+</html>

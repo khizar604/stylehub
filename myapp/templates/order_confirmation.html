@@ -1,0 +1,107 @@
+{% include 'chatbot.html' %}
+{% include 'responsive_footer.html' %}
+
+<div class="confirmation-container py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card confirmation-card shadow-lg border-0">
+                    <div class="card-header bg-success text-white text-center py-4">
+                        <i class="fas fa-check-circle fa-4x mb-3"></i>
+                        <h1 class="h2 mb-0">Order Confirmed!</h1>
+                    </div>
+                    
+                    <div class="card-body px-4 py-5">
+                        <div class="confirmation-details">
+                            <div class="icon-box text-center mb-4">
+                                <i class="fas fa-box-open fa-3x text-success"></i>
+                            </div>
+                            
+                            <div class="order-info mb-4">
+                                <div class="row text-center mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="info-item bg-light p-3 rounded">
+                                            <h3 class="h5 text-muted mb-2">Order ID</h3>
+                                            <p class="h4 font-weight-bold text-dark">{{ order.id }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="info-item bg-light p-3 rounded">
+                                            <h3 class="h5 text-muted mb-2">Total Amount</h3>
+                                            <p class="h4 font-weight-bold text-success">${{ order.total_price }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="delivery-info text-center mb-5">
+                                <p class="lead text-muted">
+                                    <i class="fas fa-shipping-fast mr-2"></i>
+                                    Your order will be processed and shipped within 24 hours
+                                </p>
+                            </div>
+
+                            <div class="cancellation-policy alert alert-warning rounded-lg">
+                                <h3 class="h5 mb-3"><i class="fas fa-exclamation-circle mr-2"></i>Cancellation Policy</h3>
+                                <p class="mb-2">You can cancel this order within 24 hours by:</p>
+                                <ol class="pl-3">
+                                    <li>Copying your Order ID: <span class="badge badge-dark">{{ order.id }}</span></li>
+                                    <li>Sending it to our WhatsApp support team</li>
+                                </ol>
+                                <a href="https://wa.me/+92 310 7747791" target="_blank" classbtn btn-success mt-3">
+                                    <i class="fab fa-whatsapp mr-2"></i>Contact Support
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-light text-center py-3">
+                        <p class="mb-0 text-muted">
+                            Need help? <a href="{% url 'contact' %}" class="text-success">Contact us</a> 
+                            or call <strong>1-800-ORDER-NOW</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .confirmation-card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .confirmation-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-item {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .info-item:hover {
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        transform: translateY(-3px);
+    }
+
+    .cancellation-policy {
+        border-left: 4px solid #ffc107;
+        padding: 1.5rem;
+    }
+
+    .badge {
+        font-size: 0.9em;
+        padding: 0.5em 0.75em;
+    }
+
+    @media (max-width: 768px) {
+        .h2 { font-size: 1.75rem; }
+        .h4 { font-size: 1.25rem; }
+        .lead { font-size: 1rem; }
+    }
+</style>
+
